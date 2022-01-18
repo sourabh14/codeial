@@ -5,6 +5,9 @@ const db = require('./config/mongoose');
 const app = express();
 const port = 8000;
 
+// Parser
+app.use(express.urlencoded());
+
 // Use express layout
 app.use(expressLayouts);
 
