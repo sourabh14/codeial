@@ -2,13 +2,18 @@ const User = require('../models/user');
 
 // Render profile page
 module.exports.profile = function(req, res){
-    return res.render('users', {
+    return res.render('users_profile', {
         title: "Users"
     });
 }
 
 // Render sign up page
 module.exports.signup = function(req, res){
+    if (req.isAuthenticated()) {
+        console.log('[ALERT] User is already signed in. Returning back to profile page');
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_up', {
         title: "Codial | Sign Up"
     });
@@ -16,6 +21,11 @@ module.exports.signup = function(req, res){
 
 // Render sign in page
 module.exports.signin = function(req, res){
+    if (req.isAuthenticated()) {
+        console.log('[ALERT] User is already signed in. Returning back to profile page');
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_in', {
         title: "Codial | Sign In"
     });
@@ -51,5 +61,5 @@ module.exports.createAccount = function(req, res){
 
 // Sign in and create a session for user
 module.exports.createSession = function(req, res) {
-    return res.redirect('/');
+    return res.redirect('/users/profile');
 }
