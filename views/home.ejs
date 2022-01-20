@@ -1,9 +1,10 @@
 <h1>Codeial / <%= title %></h1>
 
 <section id="feed-posts">
-    <h4>Posts</h4>
     <form action="" id="new-post-form" method="POST">
-        <textarea name="content" cols="30" rows="4"></textarea>
-        <input type="submit" value="Post">
+        <div class="form-group">
+            <textarea class="form-control" name="content" style="max-width: 350px; margin: auto; opacity: 0.6;" rows="2" placeholder="Write a post.."></textarea>
+        </div>
+        <input class="btn btn-secondary" type="submit" value="Post">
     </form>
 </section>

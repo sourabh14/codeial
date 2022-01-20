@@ -10,24 +10,26 @@ module.exports.profile = function(req, res){
 // Render sign up page
 module.exports.signup = function(req, res){
     if (req.isAuthenticated()) {
-        console.log('[ALERT] User is already signed in. Returning back to profile page');
-        return res.redirect('/users/profile');
+        console.log('[ALERT] User is already signed in. Returning back to home page');
+        return res.redirect('/');
     }
 
     return res.render('user_sign_up', {
-        title: "Codial | Sign Up"
+        title: "Codial | Sign Up",
+        layout: 'user_sign_up' 
     });
 }
 
 // Render sign in page
 module.exports.signin = function(req, res){
     if (req.isAuthenticated()) {
-        console.log('[ALERT] User is already signed in. Returning back to profile page');
-        return res.redirect('/users/profile');
+        console.log('[ALERT] User is already signed in. Returning back to home page');
+        return res.redirect('/');
     }
 
     return res.render('user_sign_in', {
-        title: "Codial | Sign In"
+        title: "Codial | Sign In",
+        layout: 'user_sign_in'
     });
 }
 
@@ -61,7 +63,7 @@ module.exports.createAccount = function(req, res){
 
 // Sign in and create a session for user
 module.exports.createSession = function(req, res) {
-    return res.redirect('/users/profile');
+    return res.redirect('/');
 }
 
 // Destroy session

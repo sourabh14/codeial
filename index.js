@@ -30,6 +30,9 @@ app.use(cookieParser());
 
 // Use express layout
 app.use(expressLayouts);
+// Dont apply layouts to sign-in and sign-up pages
+app.set("layout user_sign_in", false);
+app.set("layout user_sign_up", false);
 
 // Flash
 app.use(flash());
