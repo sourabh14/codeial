@@ -14,12 +14,14 @@ passport.use(new LocalStrategy({
                 return done(err);
             }
             
-            if (!user || user.password != password) {
-                console.log('Invalid username/password');
-                return done(null, false);
+            if (!user) {
+                return done(null, false, { messages: 'Email doesnt exists!' });
             }
-
-            return done(null, user);
+            if (user.password != password) {
+                return done(null, false, { messages: 'Wrong password!' });
+            } else {
+                return done(null, user);
+            }
         });
     }
 ));
