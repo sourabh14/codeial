@@ -1,4 +1,4 @@
-<h1>Codeial / <%= title %></h1>
+<h1> <%= title %></h1>
 
 <section id="feed-posts">
     <form action="/posts/create-post" id="new-post-form" method="POST">
@@ -8,3 +8,11 @@
         <input class="btn btn-secondary" type="submit" value="Post">
     </form>
 </section>
+
+<div class="posts-list-container">
+    <% for (p of posts) { %>
+        <div class="post">
+            <%= p.content%>
+        </div>
+    <% } %>
+</div>
