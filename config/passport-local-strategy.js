@@ -31,7 +31,7 @@ passport.serializeUser(function(user, done) {
     done(null, user.id);
 })
 
-// Deserializing the user from the key in the cookie
+// Deserializing the user from the key in the cookie - extract user id and fint it in database User
 passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
         if (err) { 
@@ -43,7 +43,7 @@ passport.deserializeUser(function(id, done) {
     })
 })
 
-// Check if the user is authenticated 
+// Check if the user is authenticated - used as middleware
 passport.checkAuthentication = function(req, res, next) {
     // if the user is signed-in, then pass on the request to the next function (controller's action)
     if (req.isAuthenticated()) {

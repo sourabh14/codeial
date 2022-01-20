@@ -10,9 +10,17 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const cookieParser = require('cookie-parser');
-//const sassMiddleware = require('node-sass-middleware');
-
+const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
+
+// SASS 
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'expanded',
+    prefix: '/css'
+}));
 
 // Parser
 app.use(express.urlencoded());
