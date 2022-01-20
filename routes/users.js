@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 const router = express.Router();
 const usersController = require('../controllers/users_controller');
@@ -16,7 +17,10 @@ router.post('/create-account', usersController.createAccount);
 // Use passport as a middleware to authenticate 
 router.post('/create-session', passport.authenticate(
         'local',
-        { failureRedirect: '/users/sign-in'}
+        { 
+            failureRedirect: '/users/sign-in',
+            failureFlash: true
+        }
     ), usersController.createSession);
 
 module.exports = router;

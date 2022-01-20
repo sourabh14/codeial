@@ -1,17 +1,18 @@
 const express = require('express');
+const app = express();
+const port = 8000;
+
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
-// const MongoStore = require('connect-mongo', )
-const sassMiddleware = require('node-sass-middleware');
 
 // Used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const cookieParser = require('cookie-parser');
+//const sassMiddleware = require('node-sass-middleware');
 
-const app = express();
-const port = 8000;
+const flash = require('connect-flash');
 
 // Parser
 app.use(express.urlencoded());
@@ -21,6 +22,9 @@ app.use(cookieParser());
 
 // Use express layout
 app.use(expressLayouts);
+
+// Flash
+app.use(flash());
 
 // Path for static files
 app.use(express.static('./assets'));
@@ -33,7 +37,7 @@ app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// 
+// Mongo store is used to store session cookie in the db
 app.use(session({
     name: 'codeial',
     // TODO - change the secret before deployment in production mode
@@ -41,7 +45,7 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: (1000 * 60 * 100)
+        maxAge: (1000 * 60 * 100)   
     }
 }));
 
