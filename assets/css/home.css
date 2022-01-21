@@ -1,5 +1,5 @@
 .post {
-    width: 400px;
+    width: 500px;
     margin: 10px auto;
     background-color: #d3dceb;
     border-radius: 6px;
@@ -21,4 +21,17 @@
 
 .post-content {
     margin: 5px 0px;
+}
+
+.comments {
+    display: inline-block; 
+}
+
+.add-comment-input {
+    max-width: 300px;
+    border-radius: 19px;
+}
+
+.btn {
+    border-radius: 19px;
 }

@@ -15,6 +15,25 @@
             <div class="posted-by"><%= p.user.name %></div>
             <div class="created-at"><%= moment(p.createdAt).format( 'Do MMM \'YY, h:mm a') %></div>
             <div class="post-content"><%= p.content %></div>
+            <div class="comments">
+                <form action="/comments/create-comment" method="POST">
+                    <div class="input-group mb-3">
+                        <input class="form-control shadow-none add-comment-input" type="text" name="content" placeholder="Add a comment...">
+                        <input type="hidden" name="post" value="<%= p._id %>">
+                        <div class="input-group-append">
+                            <input class="btn btn-primary input-group-append" type="submit" value="Add">
+                        </div>
+                    </div>
+                </form>
+                <!-- <form action="/comments/create-comment" method="POST">
+                    <input class="form-control add-comment-input" type="text" name="content" placeholder="Add a comment...">
+                    <input type="hidden" name="post" value="<%= p._id %>">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Button</button>
+                    </div>
+                    <input class="btn btn-primary input-group-append" type="submit" value="Add comment">
+                </form> -->
+            </div>
         </div>
     <% } %>
 </div>
