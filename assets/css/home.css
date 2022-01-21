@@ -1,12 +1,13 @@
 .post {
     width: 500px;
-    margin: 10px auto;
+    margin: 20px auto;
     background-color: #d3dceb;
     border-radius: 6px;
     padding-left: 10px;
+    padding-bottom: 8px;
     text-align: left;
-    box-shadow: 0 0 20px #858b95;
-    border: 1px solid grey;
+    box-shadow: 0 5px 5px #858b95;
+    /* border: 1px solid grey; */
 }
 
 .posted-by {
@@ -23,15 +24,29 @@
     margin: 5px 0px;
 }
 
-.comments {
+.add-comments {
     display: inline-block; 
+    width: 450px;
+    margin-bottom: -15px;
 }
 
 .add-comment-input {
-    max-width: 300px;
+    max-width: 400px;
     border-radius: 19px;
 }
 
 .btn {
     border-radius: 19px;
+}
+
+.comment-item {
+    background-color: #b3c1d9;
+    /* border-top: 1px solid grey; */
+    margin: 10px 10px 10px 0px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.comment-item-user {
+    font-weight: bold;
 }

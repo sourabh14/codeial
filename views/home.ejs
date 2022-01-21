@@ -1,9 +1,11 @@
 <h1> <%= title %></h1>
 
+<br>
+
 <section id="feed-posts">
     <form action="/posts/create-post" id="new-post-form" method="POST">
         <div class="form-group">
-            <textarea class="form-control" name="content" style="max-width: 350px; margin: auto; opacity: 0.6;" rows="2" placeholder="Write a post.."></textarea>
+            <textarea class="form-control" name="content" style="max-width: 500px; margin: auto; opacity: 0.6;" rows="2" placeholder="Write a post.."></textarea>
         </div>
         <input class="btn btn-secondary" type="submit" value="Post">
     </form>
@@ -15,7 +17,7 @@
             <div class="posted-by"><%= p.user.name %></div>
             <div class="created-at"><%= moment(p.createdAt).format( 'Do MMM \'YY, h:mm a') %></div>
             <div class="post-content"><%= p.content %></div>
-            <div class="comments">
+            <div class="add-comments">
                 <form action="/comments/create-comment" method="POST">
                     <div class="input-group mb-3">
                         <input class="form-control shadow-none add-comment-input" type="text" name="content" placeholder="Add a comment...">
@@ -25,14 +27,21 @@
                         </div>
                     </div>
                 </form>
-                <!-- <form action="/comments/create-comment" method="POST">
-                    <input class="form-control add-comment-input" type="text" name="content" placeholder="Add a comment...">
-                    <input type="hidden" name="post" value="<%= p._id %>">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Button</button>
-                    </div>
-                    <input class="btn btn-primary input-group-append" type="submit" value="Add comment">
-                </form> -->
+            </div>
+            <% if (p.comments.length >0) { %>
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= p._id %>" aria-expanded="true" aria-controls="<%= p._id %>">
+                    <%= p.comments.length %> Comments
+                </button>
+            <% } %>
+            <div id="collapse<%= p._id %>" class="collapse">
+                <div class="comments-list">
+                    <% for (c of p.comments) { %>
+                        <div class="comment-item">
+                            <div class="comment-item-user"><%= c.user.name %></div>
+                            <div class="comment-item-content"><%= c.content %></div>
+                        </div>
+                    <% } %>
+                </div>
             </div>
         </div>
     <% } %>
