@@ -12,7 +12,9 @@
 <div class="posts-list-container">
     <% for (p of posts) { %>
         <div class="post">
-            <%= p.content%>
+            <div class="posted-by"><%= p.user.name %></div>
+            <div class="created-at"><%= moment(p.createdAt).format( 'Do MMM \'YY, h:mm a') %></div>
+            <div class="post-content"><%= p.content %></div>
         </div>
     <% } %>
 </div>

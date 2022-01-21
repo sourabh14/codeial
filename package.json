@@ -28,6 +28,7 @@
     "express": "^4.17.2",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
+    "moment": "^2.29.1",
     "mongoose": "^6.1.7",
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.5.2",
