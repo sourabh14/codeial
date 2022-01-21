@@ -1,7 +1,10 @@
 body {
   margin: 0px;
   background-color: #91a8cf;
-  text-align: center;
+}
+
+main {
+  margin-top: 40px;
 }
 
 body #layout-main {

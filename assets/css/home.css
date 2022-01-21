@@ -1,3 +1,22 @@
+main {
+    display: flex;
+}   
+
+aside {
+    width: 400px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.list-group-item {
+    background-color: #91a8cf;
+    border: none;
+}
+
+.list-group-item:hover {
+    background-color: #b9c1cd;
+}
+
 .post {
     width: 500px;
     margin: 20px auto;
