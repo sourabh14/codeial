@@ -41,6 +41,7 @@ module.exports.signin = function(req, res){
 // Get sign up data
 module.exports.createAccount = function(req, res){
     if (req.body.password != req.body.confirm_password) {
+        // req.flash('error', 'Password doesnt match confirm password!');
         return res.redirect('back'); 
     }
 
@@ -67,12 +68,14 @@ module.exports.createAccount = function(req, res){
 
 // Sign in and create a session for user
 module.exports.createSession = function(req, res) {
+    req.flash('success', 'Welcome to Codeial!');
     return res.redirect('/');
 }
 
 // Destroy session
 module.exports.destroySession = function(req, res) {
     req.logout();
+    req.flash('success', 'Logged out!');
     return res.redirect('/users/sign-in');
 }
 

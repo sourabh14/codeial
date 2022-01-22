@@ -31,6 +31,7 @@
     "moment": "^2.29.1",
     "mongoose": "^6.1.7",
     "node-sass-middleware": "^0.11.0",
+    "noty": "^3.2.0-beta-deprecated",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
     "passport-session": "^1.0.2",

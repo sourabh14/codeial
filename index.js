@@ -12,6 +12,7 @@ const passportLocal = require('./config/passport-local-strategy');
 const cookieParser = require('cookie-parser');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
+const customMware = require('./config/middleware')
 
 // SASS 
 app.use(sassMiddleware({
@@ -33,9 +34,6 @@ app.use(expressLayouts);
 // Dont apply layouts to sign-in and sign-up pages
 app.set("layout user_sign_in", false);
 app.set("layout user_sign_up", false);
-
-// Flash
-app.use(flash());
 
 // Path for static files
 app.use(express.static('./assets'));
@@ -64,6 +62,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+// Flash - needs to be put after session is being used - stored in cookie
+app.use(flash());
+
+// Custom middleware which pass on flash messages to ejs template 
+app.use(customMware.setFlash);
+
 
 // Use express router
 app.use('/', require("./routes"));

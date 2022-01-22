@@ -4,9 +4,10 @@ const User = require('../models/user');
 
 // Authentication using passport.js
 passport.use(new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'email',
+        passReqToCallback: true
     },
-    function(email, password, done) {
+    function(req, email, password, done) {
         // Find the user and establish the identity
         User.findOne({email: email}, function(err, user) {
             if (err) { 
@@ -15,10 +16,12 @@ passport.use(new LocalStrategy({
             }
             
             if (!user) {
-                return done(null, false, { messages: 'Email doesnt exists!' });
+                req.flash('error', 'The email doesnt exist!');
+                return done(null, false);
             }
             if (user.password != password) {
-                return done(null, false, { messages: 'Wrong password!' });
+                req.flash('error', 'Incorrect password!');
+                return done(null, false);
             } else {
                 return done(null, user);
             }
