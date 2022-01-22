@@ -75,3 +75,18 @@ module.exports.destroySession = function(req, res) {
     req.logout();
     return res.redirect('/users/sign-in');
 }
+
+// Update Profile
+module.exports.updateAccount = function(req, res){
+    if (req.user.id == req.params.id) {
+        User.findByIdAndUpdate(req.params.id, {
+            name: req.body.name
+        }, function(err, user) {
+            return res.redirect('back');
+        })
+    } else {
+        return res.status(401).send('Unauthorized');
+    }
+
+    
+}
