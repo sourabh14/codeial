@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/css/home.css">
 
+<script src="/js/home_posts.js"></script>
+
 <main>
     <aside id="user-friends">
         <h4 id="user-friends-title">Friends</h4>
@@ -25,9 +27,9 @@
             </form>
         </div>
         
-        <div class="posts-list-container">
+        <div id="posts-list-container">
             <% for (p of posts) { %>
-                <div class="post">
+                <div class="post" id="<%= p._id %>">
                     <div class="posted-by"><%= p.user.name %></div>
                     <div class="created-at"><%= moment(p.createdAt).format( 'Do MMM \'YY, h:mm a') %></div>
                     <div class="post-content"><%= p.content %></div>
@@ -78,4 +80,6 @@
     
     
 </main>
+
+
 
