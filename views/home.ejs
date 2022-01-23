@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/home.css">
 
 <script src="/js/home_posts.js"></script>
+<script src="/js/home_comments.js"></script>
 
 <main>
     <aside id="user-friends">
@@ -34,14 +35,14 @@
                     <div class="created-at"><%= moment(p.createdAt).format( 'Do MMM \'YY, h:mm a') %></div>
                     <div class="post-content"><%= p.content %></div>
                     <% if (locals.user.id == p.user.id) { %>
-                        <div class="delete-button" title="Delete">
-                            <a href="/posts/destroy-post/<%= p._id %> ">
+                        <div class="delete-button-container" title="Delete">
+                            <a class="delete-post-button" href="/posts/destroy-post/<%= p._id %> ">
                                 Delete post<i class="fas fa-trash-alt"></i>
                             </a>
                         </div>
                     <% } %>
-                    <div class="add-comments">
-                        <form action="/comments/create-comment" method="POST">
+                    <div class="add-comments-container">
+                        <form class="add-comment-form" action="/comments/create-comment" method="POST">
                             <div class="input-group mb-3">
                                 <input class="form-control shadow-none add-comment-input" type="text" name="content" placeholder="Add a comment..." required>
                                 <input type="hidden" name="post" value="<%= p._id %>">
@@ -59,12 +60,12 @@
                     <div id="collapse<%= p._id %>" class="collapse">
                         <div class="comments-list">
                             <% for (c of p.comments) { %>
-                                <div class="comment-item">
+                                <div class="comment-item" id="<%= c._id %>">
                                     <div class="comment-item-user"><%= c.user.name %></div>
                                     <div class="comment-item-content"><%= c.content %></div>
                                     <% if (locals.user.id == c.user.id) { %>
-                                        <div class="delete-button" title="Delete">
-                                            <a href="/comments/destroy-comment/<%= c._id %> ">
+                                        <div title="Delete">
+                                            <a class="delete-comment-button" href="/comments/destroy-comment/<%= c._id %> ">
                                                 Delete comment<i class="fas fa-trash-alt"></i>
                                             </a>
                                         </div>

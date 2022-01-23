@@ -43,7 +43,7 @@ aside {
     margin: 5px 0px;
 }
 
-.add-comments {
+.add-comments-container {
     display: inline-block; 
     width: 450px;
     margin-bottom: -15px;

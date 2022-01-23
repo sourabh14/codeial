@@ -46,7 +46,7 @@
                         <form action="/comments/create-comment" method="POST">
                             <div class="input-group mb-3">
                                 <input class="form-control shadow-none add-comment-input" type="text" name="content" placeholder="Add a comment..." required>
-                                <input type="hidden" name="post" value="<%= p._id %>">
+                                <input type="hidden" name="post" value="${p._id}">
                                 <div class="input-group-append">
                                     <input class="btn btn-primary input-group-append" type="submit" value="Add">
                                 </div>
@@ -62,5 +62,37 @@
                     </div>
                 </div>`)
     }
+
+    let deletePost = function() {
+        $('.delete-post-button').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'get',
+                url:  $(e.target).attr("href"),
+                success: function(data) {
+                    console.log('delete:');
+                    console.log(data);
+                    console.log(`#${data.data.post_id}`)
+                    $(`#${data.data.post_id}`).fadeTo(1000, 0.01, function(){ 
+                        $(this).slideUp(150, function() {
+                            $(this).remove(); 
+                        }); 
+                    });
+                }, error: function(err) {
+                    console.log("Error: ", err.responseText);
+                }
+            })
+            .done(function() {
+                new Noty({
+                    text: "Post deleted successfully",
+                    type: 'success',
+                    theme: 'relax',
+                    timeout: 2000
+                }).show();
+            })
+        })
+    }
+    
     createPost();
+    deletePost();
 }
