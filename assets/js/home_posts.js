@@ -13,20 +13,20 @@
                 success: function(data) {
                     let newPost = newPostDOM(data.data.post);
                     console.log(data);
-                    console.log(data);
-                    $('#posts-list-container').prepend(newPost)
+                    // $('#posts-list-container').prepend(newPost);
+                    $(newPost).prependTo('#posts-list-container').hide().slideDown(600);
                 }, error: function(err) {
                     console.log(err, responseText);
                 }
             })
-            // .done(function() {
-            //     new Noty({
-            //         text: "Post added successfully",
-            //         type: 'success',
-            //         theme: 'relax',
-            //         timeout: 2000
-            //     }).show();
-            // })
+            .done(function() {
+                new Noty({
+                    text: "Post added successfully",
+                    type: 'success',
+                    theme: 'relax',
+                    timeout: 2000
+                }).show();
+            })
 
         });
     }
@@ -38,7 +38,7 @@
                     <div class="created-at">moment(${p.createdAt}).format( \"Do MMM \'YY, h:mm a\")</div>
                     <div class="post-content">${p.content}</div>
                     <div class="delete-button" title="Delete">
-                        <a href="/posts/destroy-post/<%= p._id %> ">
+                        <a href="/posts/destroy-post/${p._id}">
                             Delete post<i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
