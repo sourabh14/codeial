@@ -12,7 +12,7 @@
                     let newComment = newPostDOM(data.data.comment);
                     let commentsList = $(e.target).parent().parent().find('.comments-list');
                     console.log(data);
-                    $(newComment).prependTo(commentsList).hide().slideDown(600);
+                    $(newComment).appendTo(commentsList).hide().slideDown(600);
                 }, error: function(err) {
                     console.log(err, responseText);
                 }
@@ -63,7 +63,7 @@
             })
             .done(function() {
                 new Noty({
-                    text: "Post deleted successfully",
+                    text: "Comment deleted successfully",
                     type: 'success',
                     theme: 'relax',
                     timeout: 2000

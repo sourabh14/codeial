@@ -81,13 +81,33 @@ module.exports.destroySession = function(req, res) {
 }
 
 // Update Profile
-module.exports.updateAccount = function(req, res){
+module.exports.updateAccount = async function(req, res){
     if (req.user.id == req.params.id) {
-        User.findByIdAndUpdate(req.params.id, {
-            name: req.body.name
-        }, function(err, user) {
-            return res.redirect('back');
-        })
+        try {
+            // let user = User.findByIdAndUpdate(req.params.id, req.body  )
+            // function(err, user) {
+            //     return res.redirect('back');
+            // })
+            let user = User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(err) {
+                if (err) {console.log("****** Multer error: ", err)}
+
+                user.name = req.body.name;
+                user.email = req.body.email; 
+
+                if (req.file) {
+                    // this is saving the path of uploaded file into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' +  req.file.filename;
+                }
+
+                user.save();
+                return res.redirect('back');
+            })
+
+        } catch(err) {
+            console.log("Error: ", err);
+        }
+        
     } else {
         return res.status(401).send('Unauthorized');
     }

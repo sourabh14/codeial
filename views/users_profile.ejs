@@ -8,11 +8,14 @@
     <h5>Update profile</h5>
 
     <% if (user.id == profile_user.id) { %>
-        <form action="/users/update/<%= profile_user.id %>" method="POST">
+        <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profileName">Name</label>
                 <input type="text" name="name" class="form-control" id="profileName" placeholder="Enter a new name.." value="<%= profile_user.name %>" required style="max-width: 200px;">
-              </div>
+                <label for="profileEmail">Email</label>
+                <input type="email" name="email" class="form-control" id="profileEmail" placeholder="Enter a new email.." value="<%= profile_user.email %>" required style="max-width: 200px;">
+                <input type="file" name="avatar" placeholder="profile pic" >
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     <% } %>
