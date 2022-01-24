@@ -35,8 +35,10 @@ app.use(expressLayouts);
 app.set("layout user_sign_in", false);
 app.set("layout user_sign_up", false);
 
-// Path for static files
+// Path for accessing static files and uploads
 app.use(express.static('./assets'));
+// Make uploads path available for browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // Extract style and scripts from subpages into the layout
 app.set('layout extractStyles', true);
