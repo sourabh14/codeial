@@ -33,34 +33,45 @@
 
     // Method to display a post in DOM 
     let newPostDOM = function(p){
-        return $(`<div class="post" id="${p._id}">
+        return $(`
+            <div class="post" id="${p._id}">
                     <div class="posted-by">${p.user.name}</div>
                     <div class="created-at">moment(${p.createdAt}).format( \"Do MMM \'YY, h:mm a\")</div>
                     <div class="post-content">${p.content}</div>
-                    <div class="delete-button" title="Delete">
-                        <a href="/posts/destroy-post/${p._id}">
-                            Delete post<i class="fas fa-trash-alt"></i>
+                    
+                    <div class="actionbar-container">
+                        <i class="far fa-thumbs-up like-button">
+                            <span>0</span>
+                        </i>
+                        <i class="far fa-comment comment-button" data-toggle="collapse" data-target="#collapse${p._id}" aria-expanded="true" aria-controls="${p._id}">
+                            <span>
+                                ${p.comments.length}
+                            </span>
+                        </i>
+                        <a class="delete-post-button" href="/posts/destroy-post/${p._id}">
+                            <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
-                    <div class="add-comments">
-                        <form action="/comments/create-comment" method="POST">
-                            <div class="input-group mb-3">
-                                <input class="form-control shadow-none add-comment-input" type="text" name="content" placeholder="Add a comment..." required>
-                                <input type="hidden" name="post" value="${p._id}">
-                                <div class="input-group-append">
-                                    <input class="btn btn-primary input-group-append" type="submit" value="Add">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= p._id %>" aria-expanded="true" aria-controls="${p._id}">
-                        ${p.comments.length} Comments
-                    </button>
+
                     <div id="collapse${p._id}" class="collapse">
-                        <div class="comments-list">
+
+                        <div class="add-comments-container">
+                            <form class="add-comment-form" action="/comments/create-comment" method="POST">
+                                <div class="input-group mb-3">
+                                    <input class="form-control shadow-none add-comment-input" type="text" name="content" placeholder="Add a comment..." required>
+                                    <input type="hidden" name="post" value="${p._id}">
+                                    <div class="input-group-append">
+                                        <input class="btn btn-primary input-group-append" type="submit" value="Add">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                    
+                        <div class="comments-list">  </div>
+
                     </div>
-                </div>`)
+                </div>
+            `)
     }
 
     let deletePost = function() {
@@ -68,11 +79,11 @@
             e.preventDefault();
             $.ajax({
                 type: 'get',
-                url:  $(e.target).attr("href"),
+                url:  $(e.target).parent().attr("href"),
                 success: function(data) {
-                    console.log('delete:');
+                    console.log('delete:'); 
                     console.log(data);
-                    console.log(`#${data.data.post_id}`)
+                    // console.log(`#${data.data.post_id}`)
                     $(`#${data.data.post_id}`).fadeTo(1000, 0.01, function(){ 
                         $(this).slideUp(150, function() {
                             $(this).remove(); 

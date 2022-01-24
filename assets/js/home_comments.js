@@ -31,7 +31,7 @@
 
     // Method to display a post in DOM 
     let newPostDOM = function(c){
-        return $(`<div class="comment-item" id="<%= c._id %>">
+        return $(`<div class="comment-item" id="${c._id}">
             <div class="comment-item-user">${c.user.name}</div>
             <div class="comment-item-content">${c.content}</div>
             <div title="Delete">

@@ -43,15 +43,42 @@ aside {
     margin: 5px 0px;
 }
 
+/* ----- Actionbar Container ------ */
+.actionbar-container {
+    display: flex;
+    margin: 10px;
+}
+
+.like-button {
+    margin: 5px 15px 5px 0px;
+    color: #415370;
+    cursor: pointer;
+}
+
+.comment-button {
+    margin: 5px 5px;
+    color: #415370;
+    cursor: pointer;
+}
+
+.delete-post-button {
+    margin-left: auto;
+    color: #415370;
+}
+
+
+/* ----- Comments ------ */
 .add-comments-container {
     display: inline-block; 
     width: 450px;
     margin-bottom: -15px;
+    font-family: sans-serif; !important
 }
 
 .add-comment-input {
     max-width: 400px;
     border-radius: 19px;
+    font-family: sans-serif; !important
 }
 
 .btn {
