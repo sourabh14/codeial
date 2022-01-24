@@ -88,7 +88,12 @@ module.exports.updateAccount = async function(req, res){
             // function(err, user) {
             //     return res.redirect('back');
             // })
-            let user = User.findById(req.params.id);
+            let user = await User.findById(req.params.id);
+
+            console.log("user name: ", user.name);
+            console.log("user email: ", user.email);
+
+
             User.uploadedAvatar(req, res, function(err) {
                 if (err) {console.log("****** Multer error: ", err)}
 
