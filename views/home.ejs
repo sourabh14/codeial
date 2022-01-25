@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="/css/home.css">
 
-<script src="/js/home_posts.js"></script>
-<script src="/js/home_comments.js"></script>
-<script src="/js/home_actionbar.js"></script>
-
 <main>
     <aside id="user-friends">
         <h4 id="user-friends-title">Friends</h4>
@@ -37,8 +33,8 @@
                     <div class="post-content"><%= p.content %></div>
                     
                     <div class="actionbar-container">
-                        <i class="far fa-thumbs-up like-button">
-                            <span>0</span>
+                        <i class="far fa-thumbs-up like-button" href="/likes/toggle/?id=<%= p._id %>&type=Post">
+                            <span><%= p.likes.length %></span>
                         </i>
                         <i class="far fa-comment comment-button" data-toggle="collapse" data-target="#collapse<%= p._id %>" aria-expanded="true" aria-controls="<%= p._id %>">
                             <span>
@@ -91,6 +87,10 @@
     
     
 </main>
+
+<script src="/js/home_posts.js"></script>
+<script src="/js/home_comments.js"></script>
+<script src="/js/home_actionbar.js"></script>
 
 
 

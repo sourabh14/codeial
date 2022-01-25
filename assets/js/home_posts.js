@@ -40,7 +40,7 @@
                     <div class="post-content">${p.content}</div>
                     
                     <div class="actionbar-container">
-                        <i class="far fa-thumbs-up like-button">
+                        <i class="far fa-thumbs-up like-button" href="/likes/toggle/?id=${p._id}&type=Post">
                             <span>0</span>
                         </i>
                         <i class="far fa-comment comment-button" data-toggle="collapse" data-target="#collapse${p._id}" aria-expanded="true" aria-controls="${p._id}">
