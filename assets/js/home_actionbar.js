@@ -3,12 +3,12 @@
         $('.comment-button').children().text("");
     }
     
-    $('.like-button').click(function(event) {
+    $('.like-button').click(function(e) {
         $.ajax({
             type: 'POST',
-            url: $(self).attr('href'),
+            url: $(this).attr('href'),
         })
-        .done(function(data) {
+        .done((data) => {
             var likesCount = parseInt($(this).text(), 10);
             if ($(this).hasClass('far')) {
                 // User has liked (insert userId, itemId into Likes table)

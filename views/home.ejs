@@ -33,9 +33,15 @@
                     <div class="post-content"><%= p.content %></div>
                     
                     <div class="actionbar-container">
-                        <i class="far fa-thumbs-up like-button" href="/likes/toggle/?id=<%= p._id %>&type=Post">
-                            <span><%= p.likes.length %></span>
-                        </i>
+                        <% if (p.likes.filter(e => e.user == locals.user.id).length > 0) { %>
+                            <i class="fas fa-thumbs-up like-button" href="/likes/toggle/?id=<%= p._id %>&type=Post">
+                                <span><%= p.likes.length %></span>
+                            </i>
+                        <% } else { %>
+                            <i class="far fa-thumbs-up like-button" href="/likes/toggle/?id=<%= p._id %>&type=Post">
+                                <span><%= p.likes.length %></span>
+                            </i>
+                        <% } %>
                         <i class="far fa-comment comment-button" data-toggle="collapse" data-target="#collapse<%= p._id %>" aria-expanded="true" aria-controls="<%= p._id %>">
                             <span>
                                 <%= p.comments.length %>
