@@ -1,7 +1,7 @@
 {
     // Method to submit form data for new comment with AJAX
     let createComment = function() {
-        $('.add-comment-form').submit(function(e) {
+        $('#posts-list-container').on('submit', '.add-comment-form', function(e) {
             e.preventDefault();
 
             $.ajax({
@@ -31,23 +31,33 @@
 
     // Method to display a post in DOM 
     let newPostDOM = function(c){
-        return $(`<div class="comment-item" id="${c._id}">
+        return $(`
+        <div class="comment-item" id="${c._id}">
             <div class="comment-item-user">${c.user.name}</div>
             <div class="comment-item-content">${c.content}</div>
-            <div title="Delete">
-                <a class="delete-button" href="/comments/destroy-comment/${c._id}">
-                    Delete comment<i class="fas fa-trash-alt"></i>
+            
+            <div class="actionbar-container">
+                <!-- Likes -->
+                <i class="far fa-thumbs-up like-button" href="/likes/toggle/?id=${c._id}&type=Comment">
+                    <span>0</span>
+                </i>
+                <!-- Delete -->
+                <a class="delete-comment-button" href="/comments/destroy-comment/${c._id} ">
+                    <i class="fas fa-trash-alt"></i>
                 </a>
             </div>
-        </div>`)
+
+        </div>
+        
+        `)
     }
 
     let deleteComment = function() {
-        $('.delete-comment-button').click(function(e) {
+        $('#posts-list-container').on('click', '.delete-comment-button', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'get',
-                url:  $(e.target).attr("href"),
+                url:  $(e.target).parent().attr("href"),
                 success: function(data) {
                     console.log('delete:');
                     console.log(data);

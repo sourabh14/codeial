@@ -75,7 +75,7 @@
     }
 
     let deletePost = function() {
-        $('.delete-post-button').click(function(e) {
+        $('#posts-list-container').on('click', '.delete-post-button', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'get',

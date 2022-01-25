@@ -18,7 +18,7 @@ aside {
 }
 
 .post {
-    width: 500px;
+    width: 477px;
     margin: 20px auto;
     background-color: #d3dceb;
     border-radius: 6px;
@@ -46,7 +46,7 @@ aside {
 /* ----- Actionbar Container ------ */
 .actionbar-container {
     display: flex;
-    margin: 10px;
+    margin: 5px;
 }
 
 .like-button {
@@ -62,6 +62,12 @@ aside {
 }
 
 .delete-post-button {
+    margin-left: auto;
+    margin-right: 15px;
+    color: #415370;
+}
+
+.delete-comment-button {
     margin-left: auto;
     color: #415370;
 }

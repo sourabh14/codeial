@@ -3,7 +3,7 @@
         $('.comment-button').children().text("");
     }
     
-    $('.like-button').click(function(e) {
+    $('#posts-list-container').on('click', '.like-button', function(e) {
         $.ajax({
             type: 'POST',
             url: $(this).attr('href'),

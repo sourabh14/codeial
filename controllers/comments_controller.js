@@ -1,5 +1,6 @@
 const Comment = require('../models/comments');
 const Post = require('../models/posts');
+const Like = require('../models/like');
 
 
 module.exports.createComment = async function(req, res) {
@@ -44,6 +45,9 @@ module.exports.destroyComment = async function(req, res) {
             comment.remove();
 
             await Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } });
+
+            // Destroy the associated likes for this comment
+            await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
                 
             if (req.xhr) {
                 return res.status(200).json({
