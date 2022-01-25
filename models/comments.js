@@ -12,7 +12,13 @@ const commentSchema = new mongoose.Schema({
     post : { // post on which comment is made 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ]
 }, {
     timestamps: true
 });
