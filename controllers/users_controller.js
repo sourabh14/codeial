@@ -82,6 +82,16 @@ module.exports.destroySession = function(req, res) {
     return res.redirect('/users/sign-in');
 }
 
+// Edit profile page
+module.exports.editProfile = function(req, res){
+    User.findById(req.params.id, function(err, user) {
+        return res.render('users_profile_edit', {
+            title: "Users",
+            profile_user: user
+        });
+    })
+}
+
 // Update Profile
 module.exports.updateAccount = async function(req, res){
     if (req.user.id == req.params.id) {
@@ -92,15 +102,16 @@ module.exports.updateAccount = async function(req, res){
             // })
             let user = await User.findById(req.params.id);
 
-            console.log("user name: ", user.name);
-            console.log("user email: ", user.email);
-
+            console.log("Updating user: ", user.name);
 
             User.uploadedAvatar(req, res, function(err) {
                 if (err) {console.log("****** Multer error: ", err)}
 
                 user.name = req.body.name;
+                user.description = req.body.description;
                 user.email = req.body.email; 
+                user.mobile = req.body.mobile;
+                user.address = req.body.address;
 
                 if (req.file) {
                     // Delete the previous avatar
@@ -113,7 +124,7 @@ module.exports.updateAccount = async function(req, res){
                 }
 
                 user.save();
-                return res.redirect('back');
+                return res.redirect('/users/profile/' + user.id);
             })
 
         } catch(err) {

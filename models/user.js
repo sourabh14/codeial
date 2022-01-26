@@ -18,6 +18,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description : {
+        type: String
+    },
+    mobile : {
+        type: String
+    },
+    address : {
+        type: String
+    },
     avatar: {
         type: String
     },

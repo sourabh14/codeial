@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+// Joint schema - friend to friend
 const friendshipSchema = new mongoose.Schema({
     // the user who sent this request
     from_user: {
