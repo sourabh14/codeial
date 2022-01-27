@@ -6,12 +6,15 @@ const router = express.Router();
 const usersController = require('../controllers/users_controller');
 
 router.get('/profile/:id', passport.checkAuthentication, usersController.profile);
+
 router.get('/sign-up', usersController.signup);
 router.get('/sign-in', usersController.signin);
 
 router.post('/create-account', usersController.createAccount);
 router.get('/update/:id', passport.checkAuthentication, usersController.editProfile)
 router.post('/update/:id', passport.checkAuthentication, usersController.updateAccount);
+
+router.post('/create-account', usersController.createAccount);
 
 // Use passport as a middleware to authenticate 
 router.post('/create-session', passport.authenticate(

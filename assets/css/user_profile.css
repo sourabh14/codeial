@@ -55,3 +55,8 @@ body{
 .shadow-none {
     box-shadow: none!important;
 }
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }

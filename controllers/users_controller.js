@@ -1,16 +1,53 @@
 const User = require('../models/user');
+const Friendship = require('../models/friendship');
 const fs = require('fs');
 const path = require('path');
 
 // Render profile page
-module.exports.profile = function(req, res){
-    User.findById(req.params.id, function(err, user) {
+module.exports.profile = async function(req, res){
+    try {
+        let profileUser = await User.findById(req.params.id);
+        let loginUser = await User.findById(req.user._id);
+        let friendshipStatus;
+
+        let pendingForApproval = await Friendship.find({
+            from_user: profileUser.id,
+            to_user: loginUser.id,
+            accepted: false
+        });
+
+        console.log("Pending for approval: ")
+        console.log(pendingForApproval.length);
+
+        let requestSent = await Friendship.find({
+            from_user: loginUser.id,
+            to_user: profileUser.id,
+            accepted: false
+        });
+
+        console.log("Request sent: ")
+        console.log(requestSent.length)
+
+        let areFriends = loginUser.friendships.includes(profileUser.id);
+
+        if (areFriends) {
+            friendshipStatus = 'friends'
+        } else if (pendingForApproval.length > 0) {
+            friendshipStatus = 'pending-approval'
+        } else if (requestSent.length > 0) {
+            friendshipStatus = 'request-sent'
+        } else {
+            friendshipStatus = 'not-friends'
+        }
+
         return res.render('users_profile', {
             title: "Users",
-            profile_user: user
+            profile_user: profileUser,
+            friendship_status: friendshipStatus
         });
-    })
-    
+    } catch (err) {
+        console.log("Error occured while opening profile page: ", err);
+    }
 }
 
 // Render sign up page
