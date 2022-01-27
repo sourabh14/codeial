@@ -18,14 +18,20 @@ module.exports.home = async function(req, res) {
             .populate('likes');
 
         let users = await User.find({});
-        let current_user = await User.find({
-            _id: req.user.id
-        })//.populate('friendships')
+        let current_user = await User.findById(req.user.id)
+        let friends = [];
+
+        for (f of current_user.friendships) {
+            let fobject = await User.findById(f._id);
+            friends.push(fobject);
+        }
+
+        console.log("current user: ", current_user);
 
         return res.render('home', {
             title: 'Home',
             posts: posts,
-            current_user: current_user,
+            friends: friends,
             all_users: users,
             moment: moment
         });

@@ -1,14 +1,23 @@
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/chat_box.css">
 
 <main>
     <aside>
         <div class="friends-list">
-            <p>Current user: <%= current_user %></p>
-            <h4 id="user-friends-title">Friends</h4>
+            <h4>Friends</h4>
+            <div class="list-group">
+                <% for (u of friends) { %>
+                    <!-- <i class="fas fa-user-circle fa-lg"></i> -->
+                    <a href="/users/profile/<%= u.id %>" class="list-group-item list-group-item-action">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                            <%= u.name %> 
+                    </a>
+                <% } %>
+            </div>
             
         </div>
         <div class="all-users">
-            <h4 id="user-friends-title">Users</h4>
+            <h4>Users</h4>
             <div class="list-group">
                 <% for (u of all_users) { %>
                     <!-- <i class="fas fa-user-circle fa-lg"></i> -->
@@ -112,12 +121,18 @@
         </div>
     </section>
     
-    
+    <%- include('_chat_box') -%>
 </main>
 
 <script src="/js/home_posts.js"></script>
 <script src="/js/home_comments.js"></script>
 <script src="/js/home_actionbar.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
 
-
+<% if (locals.user) { %>
+    <script>
+        new ChatEngine('user-chat-box', '<%= locals.user.email %>')
+    </script>
+<% } %>
