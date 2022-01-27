@@ -1,18 +1,26 @@
 <link rel="stylesheet" href="/css/home.css">
 
 <main>
-    <aside id="user-friends">
-        <h4 id="user-friends-title">Friends</h4>
-        <div class="list-group">
-
+    <aside>
+        <div class="friends-list">
+            <p>Current user: <%= current_user %></p>
+            <h4 id="user-friends-title">Friends</h4>
+            
         </div>
-        <% for (u of all_users) { %>
-            <!-- <i class="fas fa-user-circle fa-lg"></i> -->
-            <a href="/users/profile/<%= u.id %>"  title="Delete post" class="list-group-item list-group-item-action">
-                <i class="fas fa-user-circle fa-lg"></i>
-                    <%= u.name %> 
-            </a>
-        <% } %>
+        <div class="all-users">
+            <h4 id="user-friends-title">Users</h4>
+            <div class="list-group">
+                <% for (u of all_users) { %>
+                    <!-- <i class="fas fa-user-circle fa-lg"></i> -->
+                    <a href="/users/profile/<%= u.id %>" class="list-group-item list-group-item-action">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                            <%= u.name %> 
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        
+        
     </aside>
     
     <section id="home-page-posts">

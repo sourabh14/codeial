@@ -18,10 +18,14 @@ module.exports.home = async function(req, res) {
             .populate('likes');
 
         let users = await User.find({});
+        let current_user = await User.find({
+            _id: req.user.id
+        })//.populate('friendships')
 
         return res.render('home', {
             title: 'Home',
             posts: posts,
+            current_user: current_user,
             all_users: users,
             moment: moment
         });
