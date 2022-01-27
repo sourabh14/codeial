@@ -3,28 +3,34 @@ main {
 }   
 
 aside {
-    width: 400px;
+    width: 30vw;
     padding-left: 50px;
     padding-right: 50px;
 }
 
+#home-page-posts {
+    width: 40vw;
+}
+
 .list-group-item {
-    background-color: #91a8cf;
+    background-color: #e5e5e5;
     border: none;
+    margin: 5px;
+    box-shadow: 0 1px 3px #858b95;
 }
 
 .list-group-item:hover {
-    background-color: #b9c1cd;
+    background-color: #cfd8e7;
 }
 
 .post {
     width: 477px;
     margin: 20px auto;
-    background-color: #d3dceb;
+    background-color: white;
     border-radius: 6px;
     padding: 10px 10px;
     text-align: left;
-    box-shadow: 0 5px 5px #858b95;
+    box-shadow: 0 2px 4px #858b95;
     /* border: 1px solid grey; */
 }
 
@@ -91,8 +97,25 @@ aside {
     border-radius: 19px;
 }
 
+.btn-primary {
+    background-color: #6c757d;
+    border: none
+}
+
+.btn-primary:hover {
+    background-color: hsl(208, 7%, 35%);
+}
+
+#postButton {
+    position: relative;
+    top: -42px;
+    right: -84%;
+    height: 33px;
+    width: 54px;
+}
+
 .comment-item {
-    background-color: #b3c1d9;
+    background-color: #e1dfdf;
     /* border-top: 1px solid grey; */
     margin: 10px 10px 10px 0px;
     padding: 8px;
@@ -101,4 +124,8 @@ aside {
 
 .comment-item-user {
     font-weight: bold;
+}
+
+textarea.form-control {
+    z-index: -1;
 }

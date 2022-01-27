@@ -4,7 +4,7 @@
 <main>
     <aside>
         <div class="friends-list">
-            <h4>Friends</h4>
+            <h5 style="font-weight: bold;"> Friends</h5>
             <div class="list-group">
                 <% for (u of friends) { %>
                     <!-- <i class="fas fa-user-circle fa-lg"></i> -->
@@ -16,8 +16,9 @@
             </div>
             
         </div>
+        <br>
         <div class="all-users">
-            <h4>Users</h4>
+            <h5 style="font-weight: bold;">Users</h5>
             <div class="list-group">
                 <% for (u of all_users) { %>
                     <!-- <i class="fas fa-user-circle fa-lg"></i> -->
@@ -35,10 +36,8 @@
     <section id="home-page-posts">
         <div id="feed-posts">
             <form action="/posts/create-post" id="new-post-form" method="POST">
-                <div class="form-group">
-                    <textarea class="form-control" name="content" style="max-width: 500px; margin: auto; opacity: 0.6;" rows="2" placeholder="Write a post.." required></textarea>
-                </div>
-                <input class="btn btn-secondary" type="submit" value="Post">
+                <textarea class="form-control" name="content" style="max-width: 500px; margin: auto; opacity: 0.6;" rows="2" placeholder="Write a post.." required></textarea>
+                <input id="postButton" class="btn btn-secondary btn-sm" type="submit" value="Post">
             </form>
         </div>
         
@@ -121,18 +120,8 @@
         </div>
     </section>
     
-    <%- include('_chat_box') -%>
 </main>
 
 <script src="/js/home_posts.js"></script>
 <script src="/js/home_comments.js"></script>
 <script src="/js/home_actionbar.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-<script src="/js/chat_engine.js"></script>
-
-<% if (locals.user) { %>
-    <script>
-        new ChatEngine('user-chat-box', '<%= locals.user.email %>')
-    </script>
-<% } %>

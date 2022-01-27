@@ -3,13 +3,14 @@
     let createComment = function() {
         $('#posts-list-container').on('submit', '.add-comment-form', function(e) {
             e.preventDefault();
+            let username = $('#profile-dropdown').text();
 
             $.ajax({
                 type: 'post',
                 url: '/comments/create-comment',
                 data: $(e.target).serialize(),
                 success: function(data) {
-                    let newComment = newPostDOM(data.data.comment);
+                    let newComment = newPostDOM(data.data.comment, username);
                     let commentsList = $(e.target).parent().parent().find('.comments-list');
                     console.log(data);
                     $(newComment).appendTo(commentsList).hide().slideDown(600);
@@ -30,10 +31,10 @@
     }
 
     // Method to display a post in DOM 
-    let newPostDOM = function(c){
+    let newPostDOM = function(c, username){
         return $(`
         <div class="comment-item" id="${c._id}">
-            <div class="comment-item-user">${c.user.name}</div>
+            <div class="comment-item-user">${username}</div>
             <div class="comment-item-content">${c.content}</div>
             
             <div class="actionbar-container">
