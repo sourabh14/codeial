@@ -26,4 +26,4 @@ node index.js
 
 ## Screenshots
 
-![Alt text](/blob/master/assets/images/screenshots/codeial-sign-in.png?raw=true "Codeial Sign In")
+![Alt text](https://raw.githubusercontent.com/sourabh14/codeial/master/assets/images/screenshots/codeial-sign-in.png "Codeial Sign In")
