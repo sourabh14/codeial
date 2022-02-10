@@ -49,3 +49,12 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+#google-sign-in {
+  display: flex;
+  justify-content: center;
+}
+
+#google-sign-in img {
+  height: 40px;
+}
