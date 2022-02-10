@@ -8,7 +8,7 @@
 ```bash
 git clone https://github.com/sourabh14/codeial.git
 ```
-2. Install express, ejs and mongoose
+2. Install dependencies
 ```bash
 cd task-master/
 npm install
