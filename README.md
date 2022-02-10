@@ -27,3 +27,5 @@ node index.js
 ## Screenshots
 
 ![Alt text](https://raw.githubusercontent.com/sourabh14/codeial/master/assets/images/screenshots/codeial-sign-in.png "Codeial Sign In")
+![Alt text](https://raw.githubusercontent.com/sourabh14/codeial/master/assets/images/screenshots/codeial-home.png "Codeial Sign In")
+![Alt text](https://raw.githubusercontent.com/sourabh14/codeial/master/assets/images/screenshots/codeial-profile.png "Codeial Sign In")
