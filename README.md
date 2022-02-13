@@ -1,4 +1,9 @@
-# Getting Started
+# About Codeial
+Codeial is a social media app built using Node JS, Express JS and Mongo DB
+
+## Live Demo
+Link: http://codeialapp.co.in:8000/
+
 ## Prerequisites
 - Node JS
 - Mongo DB
