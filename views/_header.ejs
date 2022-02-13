@@ -10,7 +10,11 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a id="profile-dropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="<%= user.avatar %>" alt="Profile pic" class="rounded-circle" width="30">
+                        <% if (user.avatar) { %>
+                            <img src="<%= user.avatar %>" alt="Profile pic" class="rounded-circle" width="30">
+                        <% } else { %>
+                            <i class="fas fa-user"></i>
+                        <% } %>
                         <%= user.name %>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
