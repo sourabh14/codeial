@@ -8,7 +8,7 @@ const User = require('../models/user');
 passport.use(new googleStrategy({
         clientID: '446983613380-m07l91f4ehut6p7rbto6lru31i9j9p58.apps.googleusercontent.com', // e.g. asdfghjkkadhajsghjk.apps.googleusercontent.com
         clientSecret: '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', // e.g. _ASDFA%KFJWIASDFASD#FAD-
-        callbackURL: "http://174.129.55.164:8000/users/auth/google/callback",
+        callbackURL: "http://codeialapp.co.in:8000/users/auth/google/callback",
     },
 
     function(accessToken, refreshToken, profile, done){
